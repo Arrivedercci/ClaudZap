@@ -1,3 +1,4 @@
+import 'package:claudzap/feature/welcome/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,14 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ClaudZap',
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello, ClaudZap!'),
-        ),
-      ),
+      theme: ThemeData.dark(),
+      home: const WelcomePage()
     );
   }
 }

@@ -1,3 +1,7 @@
+import 'package:claudzap/common/extension/custom_theme_extension.dart';
+import 'package:claudzap/common/utils/widgets/custom_elevated_button.dart';
+import 'package:claudzap/feature/welcome/widgets/language_button.dart';
+import 'package:claudzap/feature/welcome/widgets/privacy_and_policies.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -6,17 +10,20 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF111B21),
       body: Center(
         child: Column(
           children: [
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Image.asset(
-                  'assets/images/circle.png',
-                  color: const Color(0xFF00A884),
-                            ),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: Image.asset(
+                    'assets/images/circle.png',
+                    color: context.theme.circleImageColor,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 40),
@@ -25,88 +32,18 @@ class WelcomePage extends StatelessWidget {
                 children: [
                   const Text(
                     'Welcome to ClaudZap',
-                   style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30 ,
-                       vertical: 20,
-                       ),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                      text: 'Read our',
-                      style:  TextStyle(
-                        color: Color(0xFF8696A0),
-                        height: 1.5,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'Privact Policy. ',
-                          style: TextStyle(
-                            color: Color(0xFF53BDEB),
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Tap "Agree and continue" to accept the',
-                        ),
-                        TextSpan(
-                          text: 'Terms of Services.',
-                          style: TextStyle(
-                            color: Color(0xFF53BDEB),
-                          ),
-                          ),
-                        ],
-                      ),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 42,
-                    width: MediaQuery.of(context).size.width - 100,
-                    child: ElevatedButton(onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF00A884),
-                      foregroundColor: const Color(0XFF111B21),
-                      splashFactory: NoSplash.splashFactory,
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                    ),
-                     child: const Text('AGREE AND CONTINUE'),
-                     ),
+                  const PrivacyAndPolicies(),
+                  CustomElevatedButton(
+                    onPressed: () {},
+                    text: 'AGREE AND CONTINUE',
                   ),
                   const SizedBox(height: 50),
-                  Material(
-                    color: const Color(0xFF182229),
-                    borderRadius: BorderRadius.circular(20),
-                    child: InkWell(
-                      onTap: (){},
-                      borderRadius: BorderRadius.circular(20),
-                      splashFactory: NoSplash.splashFactory,
-                      highlightColor: const Color(0xFF09141A),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.language, color: Color(0xFF00A884)
-                            ),
-                            SizedBox(width: 10),
-                            Text('English'),
-                            SizedBox(width: 10),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Color(0xFF00A884),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  )
+                  const LanguageButton()
                 ],
               ),
             ),

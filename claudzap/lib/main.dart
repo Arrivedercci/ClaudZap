@@ -1,3 +1,5 @@
+import 'package:claudzap/common/theme/dark_theme.dart';
+import 'package:claudzap/common/theme/light_theme.dart';
 import 'package:claudzap/feature/welcome/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ClaudZap',
-      theme: ThemeData.dark(),
-      home: const WelcomePage()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'ClaudZap',
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        themeMode: ThemeMode.system,
+        home: const WelcomePage());
   }
 }

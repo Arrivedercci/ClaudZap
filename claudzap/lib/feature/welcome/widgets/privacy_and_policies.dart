@@ -14,7 +14,7 @@ class PrivacyAndPolicies extends StatelessWidget {
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
-          text: 'Read our',
+          text: 'Read our ',
           style: TextStyle(
             color: context.theme.greyColor,
             height: 1.5,
@@ -27,7 +27,7 @@ class PrivacyAndPolicies extends StatelessWidget {
               ),
             ),
             const TextSpan(
-              text: 'Tap "Agree and continue" to accept the',
+              text: 'Tap "Agree and continue" to accept the ',
             ),
             TextSpan(
               text: 'Terms of Services.',

@@ -2,7 +2,7 @@ import 'package:claudzap/common/extension/custom_theme_extension.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyAndPolicies extends StatelessWidget {
-  const PrivacyAndPolicies({Key? key}) : super(key: key);
+  const PrivacyAndPolicies({super.key});
 
   @override
   Widget build(BuildContext context) {

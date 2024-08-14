@@ -1,6 +1,7 @@
 import 'package:claudzap/common/theme/dark_theme.dart';
 import 'package:claudzap/common/theme/light_theme.dart';
 import 'package:claudzap/feature/auth/pages/login_page.dart';
+import 'package:claudzap/feature/auth/pages/verification_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.system,
-        home: const LoginPage());
+        home: const VerificationPage());
   }
 }

@@ -1,9 +1,10 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
 import 'package:claudzap/common/utils/coloors.dart';
+import 'package:claudzap/common/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class LanguageButton extends StatelessWidget {
-  const LanguageButton({Key? key}) : super(key: key);
+  const LanguageButton({super.key});
 
   showBottomSheet(context) {
     return showModalBottomSheet(
@@ -25,15 +26,9 @@ class LanguageButton extends StatelessWidget {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    splashColor: Colors.transparent,
-                    splashRadius: 22,
-                    iconSize: 22,
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 40),
-                    icon: const Icon(Icons.close_outlined,
-                        color: Coloors.greyDark),
+                  CustomIconButton(
+                    onTap: () => Navigator.of(context).pop(),
+                    icon: Icons.close_outlined,
                   ),
                   const SizedBox(width: 10),
                   const Text('Select App language',

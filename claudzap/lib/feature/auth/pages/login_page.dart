@@ -1,6 +1,8 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
+import 'package:claudzap/common/helper/show_alert_dialogue.dart';
 import 'package:claudzap/common/utils/coloors.dart';
-import 'package:claudzap/common/utils/widgets/custom_elevated_button.dart';
+import 'package:claudzap/common/widgets/custom_elevated_button.dart';
+import 'package:claudzap/common/widgets/custom_icon_button.dart';
 import 'package:claudzap/feature/auth/widgets/custom_text_field.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,28 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
+
+  sendCodeToPhoneNumber() {
+    final phoneNumber = phoneNumberController.text;
+    final countryName = countryNameController.text;
+    final countryCode = countryCodeController.text;
+
+    if (phoneNumber.isEmpty) {
+      return showAlertDialog(
+          context: context, message: "The phone number field is required");
+    } else if (phoneNumber.length < 9) {
+      return showAlertDialog(
+          context: context,
+          message:
+              "The phone number you entered is too short for the country: $countryName\n\nInclude your area code if you haven't");
+    } else if (phoneNumber.length > 10) {
+      return showAlertDialog(
+        context: context,
+        message:
+            "The phone number you entered is too long for the country: $countryName",
+      );
+    }
+  }
 
   showCountryCodePicker() {
     showCountryPicker(
@@ -82,14 +106,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {},
-            splashColor: Colors.transparent,
-            splashRadius: 22,
-            iconSize: 22,
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 40),
-            icon: Icon(Icons.more_vert, color: context.theme.greyColor),
+          CustomIconButton(
+            onTap: () {},
+            icon: Icons.more_vert,
           ),
         ],
       ),
@@ -166,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
       floatingActionButton: CustomElevatedButton(
-        onPressed: () {},
+        onPressed: sendCodeToPhoneNumber,
         text: "NEXT",
         buttonWidth: 90,
       ),

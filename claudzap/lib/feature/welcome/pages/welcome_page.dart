@@ -1,5 +1,5 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
-import 'package:claudzap/common/utils/widgets/custom_elevated_button.dart';
+import 'package:claudzap/common/widgets/custom_elevated_button.dart';
 import 'package:claudzap/feature/welcome/widgets/language_button.dart';
 import 'package:claudzap/feature/welcome/widgets/privacy_and_policies.dart';
 import 'package:flutter/material.dart';

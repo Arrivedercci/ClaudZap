@@ -2,6 +2,7 @@ import 'package:claudzap/common/extension/custom_theme_extension.dart';
 import 'package:claudzap/common/utils/coloors.dart';
 import 'package:claudzap/common/utils/widgets/custom_elevated_button.dart';
 import 'package:claudzap/feature/auth/widgets/custom_text_field.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +16,44 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
+
+  showCountryCodePicker() {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      favorite: ['BR'],
+      countryListTheme: CountryListThemeData(
+        bottomSheetHeight: 600,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        flagSize: 22,
+        borderRadius: BorderRadius.circular(20),
+        textStyle: TextStyle(color: context.theme.greyColor),
+        inputDecoration: InputDecoration(
+          labelStyle: TextStyle(color: context.theme.greyColor),
+          prefixIcon: const Icon(
+            Icons.language,
+            color: Coloors.greenDark,
+          ),
+          hintText: 'Search country code or name',
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: context.theme.greyColor!.withOpacity(0.2),
+            ),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Coloors.greenDark,
+            ),
+          ),
+        ),
+      ),
+      onSelect: (country) {
+        countryNameController.text = country.name;
+        countryCodeController.text = country.countryCode;
+      },
+    );
+  }
+
   @override
   void initState() {
     countryNameController = TextEditingController(text: "Brasil");
@@ -88,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: CustomTextField(
-              onTap: () => {},
+              onTap: showCountryCodePicker,
               controller: countryNameController,
               readOnly: true,
               suffixIcon: const Icon(
@@ -105,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   width: 70,
                   child: CustomTextField(
-                    onTap: () => {},
+                    onTap: showCountryCodePicker,
                     controller: countryCodeController,
                     prefixText: '+',
                     readOnly: true,

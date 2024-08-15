@@ -1,4 +1,5 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
+import 'package:claudzap/common/routes/routes.dart';
 import 'package:claudzap/common/widgets/custom_elevated_button.dart';
 import 'package:claudzap/feature/welcome/widgets/language_button.dart';
 import 'package:claudzap/feature/welcome/widgets/privacy_and_policies.dart';
@@ -6,6 +7,11 @@ import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
+
+  navigateToLoginPage(context) {
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(Routes.login, (route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                   const PrivacyAndPolicies(),
                   CustomElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => navigateToLoginPage(context),
                     text: 'AGREE AND CONTINUE',
                   ),
                   const SizedBox(height: 50),

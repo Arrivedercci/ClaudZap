@@ -1,20 +1,22 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
-import 'package:claudzap/common/helper/show_alert_dialogue.dart';
+import 'package:claudzap/common/helper/show_alert_dialog.dart';
 import 'package:claudzap/common/utils/coloors.dart';
 import 'package:claudzap/common/widgets/custom_elevated_button.dart';
 import 'package:claudzap/common/widgets/custom_icon_button.dart';
+import 'package:claudzap/feature/auth/controller/auth_controller.dart';
 import 'package:claudzap/feature/auth/widgets/custom_text_field.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
@@ -39,6 +41,11 @@ class _LoginPageState extends State<LoginPage> {
             "The phone number you entered is too long for the country: $countryName",
       );
     }
+
+    ref.read(authControllerProvider).sendSmsCode(
+          context: context,
+          phoneNumber: '+$countryCode$phoneNumber',
+        );
   }
 
   showCountryCodePicker() {
@@ -73,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onSelect: (country) {
         countryNameController.text = country.name;
-        countryCodeController.text = country.countryCode;
+        countryCodeController.text = country.phoneCode;
       },
     );
   }
@@ -107,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
         centerTitle: true,
         actions: [
           CustomIconButton(
-            onTap: () {},
+            onPressed: () {},
             icon: Icons.more_vert,
           ),
         ],

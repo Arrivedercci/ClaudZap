@@ -1,52 +1,49 @@
 import 'package:claudzap/common/extension/custom_theme_extension.dart';
 import 'package:claudzap/common/widgets/custom_icon_button.dart';
+import 'package:claudzap/feature/auth/controller/auth_controller.dart';
 import 'package:claudzap/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VerificationPage extends StatefulWidget {
+class VerificationPage extends ConsumerWidget {
   const VerificationPage({
     super.key,
     required this.verificationId,
     required this.phoneNumber,
   });
+
   final String verificationId;
   final String phoneNumber;
 
-  @override
-  State<VerificationPage> createState() => _VerificationPageState();
-}
-
-class _VerificationPageState extends State<VerificationPage> {
-  late TextEditingController verificationCodeController;
-
-  @override
-  void initState() {
-    verificationCodeController = TextEditingController();
-    super.initState();
+  void verifySmsCode(
+    BuildContext context,
+    WidgetRef ref,
+    String smsCode,
+  ) {
+    ref.read(authControllerProvider).verifySmsCode(
+          context: context,
+          smsCodeId: verificationId,
+          smsCode: smsCode,
+          mounted: true,
+        );
   }
 
   @override
-  void dispose() {
-    verificationCodeController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
+        centerTitle: true,
         title: Text(
-          "Verify your phone number",
+          'Verify your number',
           style: TextStyle(
             color: context.theme.authAppbarTextColor,
           ),
         ),
-        centerTitle: true,
         actions: [
           CustomIconButton(
-            onTap: () {},
+            onPressed: () {},
             icon: Icons.more_vert,
           ),
         ],
@@ -83,12 +80,19 @@ class _VerificationPageState extends State<VerificationPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomTextField(
-                controller: verificationCodeController,
                 hintText: "- - -  - - -",
                 fontSize: 30,
                 autoFocus: true,
                 keyboardType: TextInputType.number,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  if (value.length == 6) {
+                    return verifySmsCode(
+                      context,
+                      ref,
+                      value,
+                    );
+                  }
+                },
               ),
             ),
             const SizedBox(height: 20),

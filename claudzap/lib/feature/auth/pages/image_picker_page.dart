@@ -98,7 +98,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
           icon: Icons.arrow_back,
         ),
         title: Text(
-          'WhatsApp',
+          'ClaudZap',
           style: TextStyle(
             color: context.theme.authAppbarTextColor,
           ),

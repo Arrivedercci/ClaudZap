@@ -60,7 +60,7 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ListTile(
                   contentPadding: const EdgeInsets.only(left: 30),
-                  title: const Text('Hey there! I am using WhatsApp'),
+                  title: const Text('Hey there! I am using ClaudZap'),
                   subtitle: Text(
                     '17th February',
                     style: TextStyle(

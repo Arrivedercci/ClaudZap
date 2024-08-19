@@ -45,7 +45,7 @@ class ContactCard extends StatelessWidget {
       ),
       subtitle: contactSource.uid.isNotEmpty
           ? Text(
-              "Hey there! I'm using WhatsApp",
+              "Hey there! I'm using ClaudZap",
               style: TextStyle(
                 color: context.theme.greyColor,
                 fontWeight: FontWeight.w600,

@@ -14,7 +14,7 @@ class ContactPage extends ConsumerWidget {
 
   shareSmsLink(phoneNumber) async {
     Uri sms = Uri.parse(
-      "sms:$phoneNumber?body=Let's chat on WhatsApp! it's a fast, simple, and secure app we can call each other for free. Get it at https://whatsapp.com/dl/",
+      "sms:$phoneNumber?body=Let's chat on ClaudZap! it's a fast, simple, and secure app we can call each other for free. Get it at https://claudzap.com/dl/",
     );
     if (await launchUrl(sms)) {
     } else {}
@@ -95,7 +95,7 @@ class ContactPage extends ConsumerWidget {
                                   vertical: 10,
                                 ),
                                 child: Text(
-                                  'Contacts on WhatsApp',
+                                  'Contacts on ClaudZap',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: context.theme.greyColor,
@@ -126,7 +126,7 @@ class ContactPage extends ConsumerWidget {
                               vertical: 10,
                             ),
                             child: Text(
-                              'Invite to WhatsApp',
+                              'Invite to ClaudZap',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: context.theme.greyColor,

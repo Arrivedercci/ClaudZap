@@ -3,6 +3,7 @@ import 'package:claudzap/common/extension/custom_theme_extension.dart';
 import 'package:claudzap/common/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerPage extends StatefulWidget {
   const ImagePickerPage({super.key});
@@ -24,8 +25,6 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 
   fetchAllImages() async {
     lastPage = currentPage;
-    final permission = await PhotoManager.requestPermissionExtend();
-    if (!permission.isAuth) return PhotoManager.openSetting();
 
     List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(
       type: RequestType.image,
@@ -84,8 +83,18 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
 
   @override
   void initState() {
-    fetchAllImages();
     super.initState();
+    requestPermissionAndFetchImages();
+  }
+
+  Future<void> requestPermissionAndFetchImages() async {
+    var status = await Permission.photos.request();
+    if (status.isGranted) {
+      fetchAllImages();
+    } else if (status.isDenied) {
+    } else if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
   }
 
   @override

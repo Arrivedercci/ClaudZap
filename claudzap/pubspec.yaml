@@ -52,6 +52,7 @@ dependencies:
   uuid: ^3.0.7
   custom_clippers: ^2.0.0
   shimmer: ^2.0.0
+  permission_handler: ^10.2.0
 
 flutter_native_splash:
   color: "#FFFFFF"

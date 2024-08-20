@@ -32,7 +32,7 @@ class ContactsRepository {
         for (var contact in allContactsInThePhone) {
           for (var firebaseContactData in userCollection.docs) {
             var firebaseContact = UserModel.fromMap(firebaseContactData.data());
-            if (contact.phones[0].number.replaceAll(' ', '') ==
+            if (contact.phones[0].number.replaceAll(RegExp(r'[\s-]'), '') ==
                 firebaseContact.phoneNumber) {
               firebaseContacts.add(firebaseContact);
               isContactFound = true;

@@ -260,7 +260,6 @@ class _UserInfoPageState extends ConsumerState<UserInfoPage> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomElevatedButton(
         onPressed: saveUserDataToFirebase,
         text: 'NEXT',
